@@ -1,11 +1,12 @@
-import joblib
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+import joblib
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 # Load the trained model
 model = joblib.load("firesafety_model.pkl")
-
-# Initialize Flask app
-app = Flask(__name__)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -23,4 +24,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-
