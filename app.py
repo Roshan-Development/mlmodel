@@ -3,7 +3,7 @@ from flask_cors import CORS
 import joblib
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all origins or specify React's URL explicitly
 
 # Load the trained model
 model = joblib.load("firesafety_model.pkl")
